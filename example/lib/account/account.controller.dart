@@ -22,7 +22,7 @@ class AccountController extends Controller<Account, AccountService> {
         account.currency = body.currency;
         account.balance = body.balance;
         final res = await service.model.create(account);
-        return Response.ok(dataResponse({'data': res}));
+        return Response.ok(dataResponse(res));
       } catch (e) {
         handleError(e);
         return Response.internalServerError(
