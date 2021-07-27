@@ -8,7 +8,10 @@ void main() async {
   final remoteDB = Platform.environment['DATABASE_URL'];
   final localDB = 'postgres://lesliearkorful:password@localhost:4040/postgres';
 
-  await Orbit.initialize(databaseUrl: remoteDB ?? localDB);
+  await Orbit.initialize(
+    databaseUrl: remoteDB ?? localDB,
+    useSSL: remoteDB != null,
+  );
 
   final app = await Orbit.create(
     controllers: [

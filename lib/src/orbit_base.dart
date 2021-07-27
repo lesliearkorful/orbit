@@ -13,12 +13,15 @@ class Orbit {
   int port = 8080;
   String address = 'localhost';
 
-  static Future<void> initialize({String? databaseUrl}) async {
+  static Future<void> initialize({
+    String? databaseUrl,
+    bool useSSL = false,
+  }) async {
     setupServiceLocator();
     if (databaseUrl == null) return;
     return await sl
         .get<DatabaseService>()
-        .initialize(databaseUrl)
+        .initialize(databaseUrl, useSSL: useSSL)
         .then((_) => print('Database connected'))
         .catchError((e) => print('error: failed to connect to database\n$e'));
   }

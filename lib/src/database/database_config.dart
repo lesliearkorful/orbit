@@ -19,7 +19,7 @@ class DatabaseConfig {
     this.scheme = '',
   });
 
-  factory DatabaseConfig.fromUrl(String url) {
+  factory DatabaseConfig.fromUrl(String url, {bool useSSL = false}) {
     final uri = Uri.parse(url);
     return DatabaseConfig(
       scheme: uri.scheme,
@@ -28,6 +28,7 @@ class DatabaseConfig {
       databaseName: uri.pathSegments.first,
       username: uri.userInfo.split(':').first,
       password: uri.userInfo.split(':').last,
+      useSSL: useSSL,
     );
   }
 
