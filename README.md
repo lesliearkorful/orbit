@@ -39,3 +39,39 @@ void main() async {
 Please file feature requests and bugs at the [issue tracker][tracker].
 
 [tracker]: http://example.com/issues/replaceme
+
+## Heroku deployment
+
+Make sure you have the Heroku CLI installed.
+
+1. Create the app on heroku. You may be asked to log in
+
+```
+heroku create orbit-dart-server
+```
+
+2. Create a `Procfile` to your project root folder
+
+eg. orbit-server/Procfile
+
+3. Add the web dyno command to the Procfile
+
+```
+web: ./dart-sdk/bin/dart example/bin/example.dart
+```
+
+4. Connect your Github repo to the app on your Heroku dashboard
+
+5. Add the dart sdk url to the heroku app environment
+
+```
+heroku config:set DART_SDK_URL=https://storage.googleapis.com/dart-archive/channels/stable/release/latest/sdk/dartsdk-linux-x64-release.zip
+```
+
+6. Add the Dart buildpack for heroku
+
+```
+heroku config:add BUILDPACK_URL=https://github.com/igrigorik/heroku-buildpack-dart.git
+```
+
+7. Attach a Postgres database from your Heroku dashboard
